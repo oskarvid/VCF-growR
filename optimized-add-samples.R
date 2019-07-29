@@ -1,5 +1,3 @@
-#file <- read.csv("/home/oskar/01-workspace/00-temp/bigger-input-for-imputeserver/chr1-samples", header = F, sep = "\t")
-
 args = commandArgs(trailingOnly=TRUE)
 file <- read.csv(args[1], header = T, sep = "\t")
 
