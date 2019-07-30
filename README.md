@@ -1,7 +1,7 @@
 # VCF GrowR
 Snakemake workflow that simulates large VCF files as input for imputation testing
 
-![VCF GrowR dag](https://raw.githubusercontent.com/oskarvid/VCF-GrowR/master/.dag.svg)
+![VCF GrowR dag](./.dag.svg)
 
 ### Information
 This method will only copy/pastes the samples in each vcf file 10 times, it does not produce random data.  
