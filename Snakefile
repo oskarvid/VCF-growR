@@ -1,6 +1,5 @@
 CONTIGS = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22]
 
-
 rule all:
 	input:
 		expand("hg19-vcfs/fixed-contig-{contig}.vcf.gz", contig=CONTIGS),
@@ -44,7 +43,13 @@ rule bgzip:
 		dummy = "scratch/{contig}-symbolic-output-file"
 	output:
 		gzip = "hg19-vcfs-bigger/bigger-chr{contig}.vcf.gz",
+	shell:
+		"bgzip -c {input.tozip} > {output.gzip}"
+
+rule tabix:
+	input:
+		rules.bgzip.output.gzip
+	output:
 		tbi = "hg19-vcfs-bigger/bigger-chr{contig}.vcf.gz.tbi",
 	shell:
-		"bgzip -c {input.tozip} > {output.gzip} && \
-		tabix -p vcf {output.gzip}"
+		"tabix -p vcf {input}"
